@@ -6,35 +6,30 @@ using UnityEngine;
 
 public class BtnUI : MonoBehaviour
 {
-    public GameObject closeButton;
-    public GameObject homePanel;
-    public GameObject deposit_Withdrawal;
-    public GameObject depositPanel;
-    public GameObject withdrawPanel;
-    public GameObject signUpPopup;
-    public GameObject sendPopup;
+    public GameObject closeButton;          // 닫기 버튼
+    public GameObject homePanel;            // 홈 화면 패널
+    public GameObject deposit_Withdrawal;   // 입출금 패널
+    public GameObject depositPanel;         // 입금 패널
+    public GameObject withdrawPanel;        // 출금 패널
+    public GameObject signUpPopup;          // 회원가입 팝업
+    public GameObject sendPopup;            // 송금 팝업
 
     [Header("송금 관련")]
-    public TMP_InputField receiverInput;
-    public TMP_InputField amountInput;
-    public UserDataService userService;
+    public TMP_InputField receiverInput;    // 송금 받을 사람의 ID 입력 필드
+    public TMP_InputField amountInput;      // 송금 금액 입력 필드
+    public UserDataService userService;     // 사용자 데이터 서비스
 
-    public void sendMoney()
+    public void sendMoney()// 송금 버튼 클릭 시 호출
     {
-        string toId = receiverInput.text;
-        ulong amount = ulong.Parse(amountInput.text);
+        string toId = receiverInput.text;            // 송금 받을 사람의 ID
+        ulong amount = ulong.Parse(amountInput.text); // 송금 금액
 
         if (userService.Transfer(toId, amount))
             Debug.Log("송금 성공!");
         else
             Debug.Log("송금 실패.");
     }
-    public void CloseButton()
-    {
-        closeButton.SetActive(false);
-        FindObjectOfType<UserUI>().UpdateUserUI();
-    }
-    public void FromDeposit()
+    public void FromDeposit()// 입,출금 -> 홈
     {
         depositPanel.SetActive(false);
         withdrawPanel.SetActive(false);
@@ -64,7 +59,6 @@ public class BtnUI : MonoBehaviour
     public void onClickClose(GameObject popup)
     {
         popup.SetActive(false);
-        homePanel.SetActive(true);
 
     }
     public void onClickOpen(GameObject popup)
