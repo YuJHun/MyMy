@@ -6,16 +6,19 @@ using UnityEngine;
 [System.Serializable]
 public class UserData
 {
+    public string id;
+    public string password;
     public string name;
     public ulong balance;
     public int cash;
-    public long cash1;
 
-    public UserData(string name1, ulong balance1, int cash1)
+    public UserData(string id, string password, string name, ulong balance, int cash)
     {
-        name = name1;
-        balance = balance1;
-        cash = cash1;
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.balance = balance;
+        this.cash = cash;
     }
 
 }
